@@ -1,0 +1,298 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(175, 152, 152);
+    font-family: cursive; /* Fuente por defecto */
+}
+
+.img {
+    display: block; /* Cambiado a block para evitar problemas de alineación */
+    width: 25vh;
+    border-radius: 50%; /* Asegura un círculo perfecto */
+    margin: 0 auto; /* Centra la imagen */
+}
+
+.perfil {
+    position: relative; /* Cambiado a relativo para evitar problemas de superposición */
+    display: flex;  
+    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+    border-radius: 30px;
+    height: 70%;
+    width: 75%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    background-color: white; /* Añadir color de fondo */
+    margin: 20px; /* Añadir margen para evitar superposición */
+    padding: 20px; /* Añadir relleno interno */
+}
+
+.bio {
+    overflow: hidden;
+    height: auto; /* Ajuste automático */
+}
+
+.info {
+    display: flex; /* Cambiado a flex para mejor alineación */
+    flex-direction: column; /* Alineación vertical */
+    align-items: center; /* Centrado horizontal */
+    justify-content: center; /* Centrado vertical */
+}
+
+.recordatorios {
+    display: block;
+}
+.contactos {
+    padding: 20px;
+    background-color: #ececec;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.contactos h2 {
+    margin-bottom: 20px;
+}
+
+.contactos ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.contactos li {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Espaciado entre elementos */
+    margin-top: 6vh;
+    padding: 0 20px; /* Espacio lateral */
+}
+
+.subcontenedor {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 50%;
+    align-items: center;    
+}
+
+.recetas {
+    border: 1px solid black;
+    padding: 20px;
+}
+
+h6 {
+    text-decoration: none;
+    color: inherit;
+}
+
+.cubo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 100%; /* Asegura que el cubo ocupe todo el ancho */
+}
+
+.cubo strong {
+    margin-right: 10px;
+}
+
+.cubo a {
+    margin-left: 10px;
+}
+
+.record {
+    display: flex;
+    justify-content: start;
+}
+
+.botones {
+    display: flex;
+    justify-content: end;
+}
+
+.reminder-list {
+    padding: 0;
+    max-height: 18vh;
+    overflow-y: auto;
+}
+
+.notification {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    width: 300px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    z-index: 1000;
+}
+
+.notification-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.notification strong {
+    margin-bottom: 10px;
+}
+
+.notification p {
+    margin: 0 0 10px 0;
+    text-align: center;
+}
+
+.notification button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000; 
+}
+
+.overlay_info {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000;
+}
+.overlay_editar{
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000; 
+}
+.nombre{
+    margin: 10px;
+}
+.cubo button{
+    margin: 2px;
+}
+.overlay_info.open {
+    display: block; /* Mostrar el overlay cuando tenga la clase open */
+}
+
+.info_contacto_hidden {
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1001; 
+    width: 300px; 
+}
+
+.info_contacto_hidden.open {
+    display: block; /* Mostrar la información de contacto cuando tenga la clase open */
+}
+.editar_contacto_hidden{
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1001; 
+    width: 300px; 
+    
+}
+#contactos_c{
+    height: 40%;
+    overflow: auto;
+}
+.form-flotante {
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1001; 
+    width: 300px; 
+}
+.recordatorios {
+    width: 30%; 
+}
+
+/* Código Responsivo */
+@media (max-width: 768px) {
+    .contenedor {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .subcontenedor {
+        width: 90%; 
+    }
+
+    .recordatorios {
+        width: 100%; 
+    }
+
+    .record {
+        font-size: 10px;
+    }
+
+    #edit {
+        left: 10px;
+        display: block;
+        overflow: hidden;
+        width: 5vh;
+        height: 5vh;
+    }
+
+    #eliminar {
+        display: block; /* Cambiado a block para asegurar que funcione correctamente */
+        overflow: hidden;
+        width: 5vh;
+        height: 5vh;
+    }
+}

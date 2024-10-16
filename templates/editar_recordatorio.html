@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='inicio.css') }}">
+<script src="{{ url_for('static', filename='btn.js') }}" defer></script>
+
+{% extends "base_template.html" %}
+
+{% block titulo %}
+    Editar Recordatorio
+{% endblock %}
+
+{% block contenido %}
+
+<div class="container">
+    <h1>Editar Recordatorio</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.titulo.label }} 
+            {{ form.titulo(class="form-control", placeholder="Título del recordatorio") }}  
+        </div>
+        <div class="mb-3">
+            {{ form.fecha.label }} 
+            {{ form.fecha(class="form-control", placeholder="DD-MM-YYYY", type="date") }}  
+        </div>
+        <div class="mb-3">
+            {{ form.hora.label }}  
+            {{ form.hora(class="form-control", placeholder="HH:MM") }}  
+        </div>
+        <div class="mb-3">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+    
+    
+</div>
+
+{% endblock %}

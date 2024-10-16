@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css')}}">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    {% extends "base_template.html" %}
+
+{% block titulo %}
+Bienvenido al sitio!
+{% endblock %}
+
+{% block contenido %}
+    <div class="contenedor">
+        <div class="row">
+            <div id="registro" class="col-6">
+                    <h1 class="text-center">Registro de usuarios</h1>
+                    <hr class="linea1">
+                    <br>
+                    <hr class="linea2">
+                    <br>
+                    <form action="/register" method="POST">
+                        {{ form_registro.hidden_tag() }}
+                        <div class="mb-3">
+                            {{ form_registro.p_nombre(class="form-control", placeholder="Ingrese su primer Nombre") }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_registro.s_nombre(class="form-control", placeholder="Ingrese su segundo Nombre") }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_registro.p_apellido(class="form-control", placeholder="Ingrese su primero apellido") }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_registro.s_apellido(class="form-control", placeholder="Ingrese su segundo apellido") }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_registro.rut(class="form-control", placeholder="Ingrese su Rut. (ejemplo12.345.678-9)") }}
+                            {% for error in form_registro.rut.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_registro.correo(class="form-control", placeholder="Ingrese un correo electronico") }}
+                            {% for error in form_registro.correo.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div> 
+                        <div class="mb-3">
+                            <h3>Seleccione su género:</h3>
+                            <div class="btn-group" role="group" aria-label="Género">
+                                {{ form_registro.genero(class="form-control") }}
+                                {% for error in form_registro.genero.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                            {% for error in form_registro.clave.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        <div class="mb-3">
+                            {{ form_registro.clave(class="form-control", placeholder="Ingresar Contraseña") }}
+                            {% for error in form_registro.clave.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_registro.confirmar_clave(class="form-control", placeholder="Confirmar Contraseña") }}
+                        </div>
+                        {{ form_registro.submit(class="btn btn-primary") }} <br> <br> <br>
+                        <a href="{{ url_for('login') }}" class="pregunta">¿Ya tienes una cuenta?</a>
+                    </form>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,45 @@
+
+#container{
+    margin-left: 38vh;
+    margin-top: 2vh;
+}
+
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    padding-top: 20px;
+    color: white;
+    text-align: center;
+}
+.sidebar ul li {
+    padding: 8px;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #575757;
+}
+
+.content {
+    margin-left: 260px;
+    padding: 20px;
+}
+.logo{
+    width: 25vh;
+    height: 25vh;
+    border: 2vh solid rgba(243, 207, 0, 0.986); 
+    border-radius: 50%;
+}
+.link{
+    display: flex;
+}

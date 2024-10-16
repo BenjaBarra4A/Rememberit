@@ -1,0 +1,111 @@
+.navbar-l {
+    background-color: aquamarine;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20vh;
+    height: 100vh; 
+}
+.navbar-l a{
+    border-radius: 50px;
+    background-color: red;
+    color: #fff;
+    width: 15vh;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    margin-bottom: 30px;
+    transform: translate(0, 80vh);
+}
+.logo-r{
+    border-radius: 100%;
+    display: flex;
+    position: fixed;
+    width: 20vh;
+    height: 20vh;
+}
+.navbar-hiden{
+    display: none;
+    background-color: aquamarine;
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 15vh;
+    height: 100vh;
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.navbar-hiden.open {
+    display: block; 
+}
+.navbar-hiden a{
+    border-radius: 50px;
+    background-color: red;
+    color: #fff;
+    width: 15vh;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    text-decoration: none;
+    margin-bottom: 30px;
+    transform: translate(0, 80vh);
+}
+.contenedor .cambiar_btn{
+    color: black;
+    font-size: 1.5rem;
+}
+@media (max-width: 430px) {
+    
+    .contenedor {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .perfil {
+        width: 90%; 
+        position: relative; 
+        margin-bottom: 20px; 
+    }
+
+    .recordatorios {
+        width: 90%; 
+    }
+
+    .navbar {
+        flex-direction: column; 
+    }
+
+    .navbar-hiden {
+        z-index: 1000;
+        position: fixed;
+        display: none; 
+    }
+
+    .cambiar_btn {
+        display: block; 
+        cursor: pointer;
+        margin-bottom: 10px; 
+    }
+
+
+    .navbar-l a,
+    .navbar-hiden a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90%; 
+        height: auto; 
+        padding: 15px; 
+    }
+    .navbar-l{
+        display: none;
+    }
+}

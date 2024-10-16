@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='register.css')}}">
+<div id="hola" class="main_container">
+                <h1 class="Ti">Registro de usuarios</h1>
+                <form action="/register" method="POST">
+                    <div class="sub_container">
+                        {{ form_registro.hidden_tag() }}
+                        <div class="mb-3">
+                            {{ form_registro.nombre.label }}
+                            {{ form_registro.nombre(class="form-control") }}
+                            {% for error in form_registro.nombre.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_registro.apellido.label }}
+                            {{ form_registro.apellido(class="form-control") }}
+                            {% for error in form_registro.apellido.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_registro.rut.label }}
+                            {{ form_registro.rut(class="form-control") }}
+                            {% for error in form_registro.rut.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_registro.correo.label }}
+                            {{ form_registro.correo(class="form-control") }}
+                            {% for error in form_registro.correo.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div> 
+                        <div class="mb-3">
+                            {{ form_registro.clave.label }}
+                            {{ form_registro.clave(class="form-control") }}
+                            {% for error in form_registro.clave.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_registro.confirmar_clave.label }}
+                            {{ form_registro.confirmar_clave(class="form-control") }}
+                        </div>
+                        {{ form_registro.submit(class="btn btn-primary") }}
+                        <a href="/iniciar">Tienes una cuenta?</a>
+                    </div>
+                </form>
+        </div>
+        

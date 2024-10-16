@@ -1,0 +1,206 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='principal.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='nav.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="{{ url_for('static', filename='btn.js') }}" defer></script>
+{% extends "base_template.html" %}
+
+
+{% block contenido %}
+    <div class="contenedor">
+            <div class="cambiar_btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <footer class="navbar-l">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" class="logo-r">
+                    <a href="/" class="home">Inicio</a>
+                    <a href="/logout" class="close">Cerrar sesión</a>
+            </footer>
+            
+            <footer class="navbar-hiden">
+                <a href="/" class="home">Inicio</a>
+                <a href="/logout" class="close">Cerrar sesión</a>
+            </footer>
+        
+        <!-- Sistema de Recordatorios -->
+        <div class="recordatorios">
+            <h2>Recordatorios</h2>
+        
+            <!-- Formulario para añadir nuevos recordatorios -->
+            <form action="/agregar_recordatorio" method="POST" style="margin-top: 20px;">
+                <div class="form-group">
+                    <label for="titulo">Título del recordatorio</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Escribe un título para el recordatorio" required>
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" class="form-control" id="fecha" name="fecha" min="" required>
+                </div>
+                <div class="form-group">
+                    <label for="horario">Hora</label>
+                    <input type="time" class="form-control" id="horario" name="hora" required>
+                </div><br>
+                <button type="submit" class="btn btn-success ">Añadir Recordatorio</button> <br> <br>
+            </form>
+
+            <!-- Lista de recordatorios del usuario -->
+            <ul class="reminder-list">
+                {% for recordatorio in recordatorios %}
+                <div class="cubo">
+                    <li class="record">
+                        <strong>{{ recordatorio.titulo }}</strong>  
+                        {{ recordatorio.fecha.strftime('%d-%m-%Y') }} | {{ recordatorio.hora }}
+                    </li>
+                    <li class="botones">
+                        <a href="/editar_recordatorio/{{ recordatorio.id }}" class="btn btn-sm btn-primary" id="edit">Editar</a>
+                        <a href="/eliminar_recordatorio/{{ recordatorio.id }}" class="btn btn-sm btn-danger" id="eliminar">Eliminar</a>
+                    </li>
+                </div>
+                {% else %}
+                    <li>No tienes recordatorios actualmente.</li>
+                {% endfor %}
+            </ul>
+            
+            <div class="contactos" id="contactos_c">
+                <h2>Contactos:</h2>
+                {% if contactos %}
+                    {% for contacto in contactos %}
+                    <div class="cubo" id="contacto_{{ contacto.id }}">
+                        <div class="nombre">
+                            {{ contacto.nombre }} {{ contacto.apellido }}
+                        </div>
+                        <button class="ver_contacto btn btn-sm btn-primary" id="ver_contacto">Ver Contacto</button>
+                        <button class="editar_contacto btn btn-sm btn-success" id="editar_contacto">Editar Contacto</button>
+                        <form action="{{ url_for('eliminar_contacto', contacto_id=contacto.id) }}" method="POST">
+                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                        </form>
+                    </div>
+
+                    <div id="overlay_editar" class="overlay_editar"></div>
+                    <div class="editar_contacto_hidden" id="editar_contacto_hidden">
+                        <form method="POST" action="{{ url_for('editar_contacto', contactos_id=contacto.id) }}">
+                            {{ form.hidden_tag() }}
+
+                            <div class="mb-3">
+                                <h6>Parentezco actual: {{ contacto.parentezco }}</h6>
+                                {{ form.parentezco.label }}  
+                                {{ form.parentezco(class="form-control") }}  
+                            </div>
+                            <div class="mb-3">
+                                <h6>Actual: {{ contacto.nombre }}</h6>
+                                {{ form.nombre.label }} 
+                                {{ form.nombre(class="form-control") }}
+                            </div>
+                            <div class="mb-3">
+                                <h6>Actual: {{ contacto.apellido }}</h6>
+                                {{ form.apellido.label }} 
+                                {{ form.apellido(class="form-control") }}
+                            </div>
+                            <div class="mb-3">
+                                <h6>Actual: {{ contacto.numero }}</h6>
+                                {{ form.numero.label }} 
+                                {{ form.numero(class="form-control") }}
+                            </div>
+                            {{ form.submit(class="acceder", id="button") }}
+                            <button type="button" id="cerrar_editar" class="cerrar_editar">Cerrar</button>
+                        </form>
+                    </div>
+
+                    <div id="overlay_info_{{ contacto.id }}" class="overlay_info"></div>
+
+                    <!-- Información de contacto oculta -->
+                    <div id="info_contacto_{{ contacto.id }}" class="info_contacto_hidden">
+                        <h4>Información de Contacto</h4>
+                        <ul>
+                            <h6>Relación:</h6>
+                            <li>{{ contacto.parentezco }}</li>
+                            <h6>Nombre y apellido</h6>
+                            <li>{{ contacto.nombre }} {{ contacto.apellido }}</li>
+                            <h6>Numero del contacto</h6>
+                            <li>(+56) {{ contacto.numero }}</li>
+                            <h6>Correo del contacto</h6>
+                            <li>{{ contacto.correo }}</li>
+                        </ul>
+                        <button class="cerrar_info" id="cerrar_info">Cerrar</button>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No tienes contactos añadidos.</p>
+                {% endif %}
+            </div> <br>
+            <button id="openFormButton" class="btn btn-success">Añadir Contacto</button><br> <br> 
+        </div>
+        
+        <div id="overlay" class="overlay"></div>
+        <div id="contactForm" class="form-flotante">
+            <h2>Añadir Contacto</h2>
+            <form action="{{ url_for('agregar_contacto') }}" method="POST"> 
+                {{ form.hidden_tag() }}
+                
+                <div class="mb-3">
+                    {{ form.parentezco.label }}  
+                    {{ form.parentezco(class="form-control") }}  
+                </div>
+                <div class="mb-3">
+                    {{ form.nombre.label }} 
+                    {{ form.nombre(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    {{ form.apellido.label }} 
+                    {{ form.apellido(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    {{ form.numero.label }} 
+                    {{ form.numero(class="form-control") }}
+                </div>
+                <div class="mb-3">
+                    {{ form.correo.label }} 
+                    {{ form.correo(class="form-control") }}
+                </div>
+                {{ form.submit(class="acceder", id="button") }}
+            </form>
+            <a href="{{ url_for('home') }}" class="btn btn-secondary">Volver</a>
+        </div>
+        
+        
+        <!-- Información del usuario -->
+        <div class="subcontenedor">
+            <div class="perfil">
+                <img src="{{ url_for('imagen', user_id=usuario.id) }}"   class="img">
+                <div class="info">
+                    <h5 class="card-title">{{ usuario.p_nombre }}  {{ usuario.s_nombre }} {{ usuario.p_apellido }} {{ usuario.s_apellido }}</h5>
+                    <p class="card-text">{{ usuario.correo }}</p>
+                    <h6>Género: {{ usuario.genero }}</h6>
+                    <h6>Es de: {{ usuario.localidades[0].ciudad if usuario.localidades else 'Sin ciudad registrada' }}</h6>
+                    <h5>Sobre mi</h5>
+                    <p class="bio">{{ usuario.bio }}</p>
+                    <a href="/update/{{ usuario.id }}" class="btn btn-primary" >Editar Perfil</a><br>
+                    <a href="/eliminar/{{ usuario.id }}" class="btn btn-danger" id="delete" >Eliminar Perfil</a>
+                    
+                    <h4>Desea hacer un test de memoria? <a href="/test">Hacer el test</a></h4><br> 
+                </div>
+            </div>
+            
+        </div>
+        <div id="notification_d" class="notification">
+            <div class="notification-content">
+                <strong>Desayuno</strong>
+                <p>Pan con huevo</p>
+                <button id="closeBtn">Cerrar</button>
+            </div>
+        </div>
+        <div id="notification_a" class="notification">
+            <div class="notification-content">
+                <strong>Almuerzo</strong>
+                <p>pollo con papas</p>
+                <button id="cerrar">Cerrar</button>
+            </div>
+        </div>
+        <div id="notification_c" class="notification">
+            <div class="notification-content">
+                <strong>Cena</strong>
+                <p>yogur</p>
+                <button id="po">Cerrar</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
