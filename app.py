@@ -108,6 +108,7 @@ def home():
     form = FormularioContactos()  
     
     return render_template("perfil.html", usuario=usuario, contactos=contactos, form=form, recordatorios=recordatorios)
+
 @app.route("/update/<int:user_id>", methods=["GET", "POST"])
 @login_required
 def actualizar(user_id):
@@ -125,11 +126,13 @@ def actualizar(user_id):
     if form.validate_on_submit():
         # Actualizar la biografía del usuario
         usuario.bio = form.bio.data
+
         if form.img.data:  # Solo si hay un archivo subido
             try:
                 usuario.img = form.img.data.read()  # Lee los datos de la imagen como bytes
             except Exception as e:
-                print("Error al leer la imagen:", e)  # Imprime el error en la consola
+                print("Error al leer la imagen:", e)  # I   mprime el error en la consola
+
         # Si hay una ubicación existente, solo actualiza si se proporcionan nuevos datos
         if ubicacion:
             if form.zona.data:  # Si se proporciona nueva zona

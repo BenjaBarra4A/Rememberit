@@ -13,12 +13,12 @@ class FormularioRegistro(FlaskForm):
     s_nombre          = StringField('Segundo Nombre', validators=[DataRequired(), Length(min=3)])
     p_apellido        = StringField('Primer Apellido', validators=[DataRequired(), Length(min=3)])
     s_apellido        = StringField('Segundo Apellido', validators=[DataRequired(), Length(min=3)])
-    rut             = StringField('Rut', validators=[DataRequired(), Length(min=11)])
-    correo          = EmailField('Correo', validators=[DataRequired(), Email()])
-    genero          = SelectField('Género', choices=[('', 'Escoja su género'), ('Femenino', 'Femenino'), ('Masculino', 'Masculino')], validators=[DataRequired()])
-    clave           = PasswordField('Clave', validators=[DataRequired(), EqualTo('confirmar_clave', message="Las claves deben ser iguales.")])
-    confirmar_clave = PasswordField('Confirmar clave', validators=[DataRequired()])
-    submit          = SubmitField('Registrarme')
+    rut               = StringField('Rut', validators=[DataRequired(), Length(min=11)])
+    correo            = EmailField('Correo', validators=[DataRequired(), Email()])
+    genero            = SelectField('Género', choices=[('', 'Escoja su género'), ('Femenino', 'Femenino'), ('Masculino', 'Masculino')], validators=[DataRequired()])
+    clave             = PasswordField('Clave', validators=[DataRequired(), EqualTo('confirmar_clave', message="Las claves deben ser iguales.")])
+    confirmar_clave   = PasswordField('Confirmar clave', validators=[DataRequired()])
+    submit            = SubmitField('Registrarme')
 
 class FormularioAcceso(FlaskForm):    
     correo    = EmailField('Ingrese su correo:', validators=[DataRequired(), Email()])
@@ -96,9 +96,21 @@ class FormularioContactos(FlaskForm):
     submit     = SubmitField('Añadir Contacto')
 
 class FormularioEditarContactos(FlaskForm):
-    parentezco = SelectField('Parentezco', choices=[('', "¿Cual es su parentezco con usted?"), ('Hijo', 'Hijo'), ('Hija', 'Hija'), ('Mamá', 'Mamá'), ('Papá', 'Papá'), ('Abuelo', 'Abuelo'), ('Abuela', 'Abuela'), ('Amig@', 'Amig@')], validators=[DataRequired()])
+    parentezco = SelectField('Parentezco', choices=[
+        ('', "¿Cual es su parentezco con usted?"),
+        ('Hijo', 'Hijo'),
+        ('Hija', 'Hija'),
+        ('Mamá', 'Mamá'),
+        ('Papá', 'Papá'),
+        ('Abuelo', 'Abuelo'),
+        ('Abuela', 'Abuela'),
+        ('Amig@', 'Amig@')
+    ])
+    nombre   = StringField('Nombre')
+    apellido = StringField('Apellido')
+    numero   = StringField('Número de telefono (+56)')
+    correo  = StringField('Correo')
+    submit  = SubmitField('Editar Contacto')
+
+class FormularioTest(FlaskForm):
     nombre     = StringField('Nombre', validators=[DataRequired()])
-    apellido   = StringField('Apellido', validators=[DataRequired()])
-    numero     = StringField('Número de telefono (+56)', validators=[DataRequired()])
-    correo     = StringField('Correo', validators=[DataRequired(), Email()])
-    submit     = SubmitField('Editar Contacto')

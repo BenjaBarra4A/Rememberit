@@ -1,5 +1,19 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='inicio.css') }}">
-<script src="{{ url_for('static', filename='btn.js') }}" defer></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const today = new Date(); 
+    const day = String(today.getDate()).padStart(2, '0'); 
+    const month = String(today.getMonth() + 1).padStart(2, '0'); 
+    const year = today.getFullYear(); // Año
+
+    const formattedDate = `${year}-${month}-${day}`; 
+
+  
+    const fechaInput = document.getElementById("fecha");
+    fechaInput.setAttribute("min", formattedDate); 
+});
+</script>
 
 {% extends "base_template.html" %}
 
@@ -20,7 +34,7 @@
         </div>
         <div class="mb-3">
             {{ form.fecha.label }} 
-            {{ form.fecha(class="form-control", placeholder="DD-MM-YYYY", type="date") }}  
+            {{ form.fecha(class="form-control", id="fecha" , placeholder="DD-MM-YYYY", type="date") }}
         </div>
         <div class="mb-3">
             {{ form.hora.label }}  

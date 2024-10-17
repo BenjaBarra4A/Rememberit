@@ -262,6 +262,11 @@ h6 {
     width: 30%; 
 }
 
+.avisos{
+    position: fixed;
+    display: block;
+}
+
 /* Código Responsivo */
 @media (max-width: 768px) {
     .contenedor {

@@ -68,18 +68,18 @@
                         <div class="nombre">
                             {{ contacto.nombre }} {{ contacto.apellido }}
                         </div>
-                        <button class="ver_contacto btn btn-sm btn-primary" id="ver_contacto">Ver Contacto</button>
-                        <button class="editar_contacto btn btn-sm btn-success" id="editar_contacto">Editar Contacto</button>
+                        <button class="ver_contacto btn btn-sm btn-primary">Ver Contacto</button>
+                        <button class="editar_contacto btn btn-sm btn-success">Editar Contacto</button>
                         <form action="{{ url_for('eliminar_contacto', contacto_id=contacto.id) }}" method="POST">
                             <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                         </form>
                     </div>
 
-                    <div id="overlay_editar" class="overlay_editar"></div>
-                    <div class="editar_contacto_hidden" id="editar_contacto_hidden">
+                    <div id="overlay_editar_{{ contacto.id }}" class="overlay_editar"></div>
+                    <div class="editar_contacto_hidden" id="editar_contacto_hidden_{{ contacto.id }}">
                         <form method="POST" action="{{ url_for('editar_contacto', contactos_id=contacto.id) }}">
                             {{ form.hidden_tag() }}
-
+                            
                             <div class="mb-3">
                                 <h6>Parentezco actual: {{ contacto.parentezco }}</h6>
                                 {{ form.parentezco.label }}  
@@ -101,7 +101,7 @@
                                 {{ form.numero(class="form-control") }}
                             </div>
                             {{ form.submit(class="acceder", id="button") }}
-                            <button type="button" id="cerrar_editar" class="cerrar_editar">Cerrar</button>
+                            <a href="{{ url_for('home') }}" class="btn btn-secondary">Volver</a>
                         </form>
                     </div>
 
@@ -120,7 +120,7 @@
                             <h6>Correo del contacto</h6>
                             <li>{{ contacto.correo }}</li>
                         </ul>
-                        <button class="cerrar_info" id="cerrar_info">Cerrar</button>
+                        <a href="{{ url_for('home') }}" class="btn btn-secondary">Cerrar</a>
                     </div>
                     {% endfor %}
                 {% else %}
@@ -177,30 +177,9 @@
                     <a href="/eliminar/{{ usuario.id }}" class="btn btn-danger" id="delete" >Eliminar Perfil</a>
                     
                     <h4>Desea hacer un test de memoria? <a href="/test">Hacer el test</a></h4><br> 
+                    <h4>Ver sus resultados <a href="/test">Ver los resultados</a></h4><br> 
                 </div>
             </div>
             
         </div>
-        <div id="notification_d" class="notification">
-            <div class="notification-content">
-                <strong>Desayuno</strong>
-                <p>Pan con huevo</p>
-                <button id="closeBtn">Cerrar</button>
-            </div>
-        </div>
-        <div id="notification_a" class="notification">
-            <div class="notification-content">
-                <strong>Almuerzo</strong>
-                <p>pollo con papas</p>
-                <button id="cerrar">Cerrar</button>
-            </div>
-        </div>
-        <div id="notification_c" class="notification">
-            <div class="notification-content">
-                <strong>Cena</strong>
-                <p>yogur</p>
-                <button id="po">Cerrar</button>
-            </div>
-        </div>
-    </div>
 {% endblock %}

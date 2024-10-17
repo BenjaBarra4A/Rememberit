@@ -33,15 +33,6 @@
                 </div>        
             </div>            
         </form>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul>
-                    {% for message in messages %}
-                    <li style="color: red;">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
     </div>
     <footer>
         <p>© 2024 Remember It. Todos los derechos reservados.</p>

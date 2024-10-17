@@ -24,42 +24,58 @@ document.getElementById('openFormButton').addEventListener('click', function() {
 //_____________________________________________________________________________________________
 // APARECE INFORMACION DE LOS USUARIOS
 
-
-document.getElementsByClassName('ver_contacto')[0].addEventListener('click', function() {
-    document.getElementsByClassName('overlay_info')[0].style.display = 'block'; 
-    document.getElementsByClassName('info_contacto_hidden')[0].style.display = 'block'; 
+// Función para mostrar la información del contacto
+document.querySelectorAll('.ver_contacto').forEach(button => {
+    button.addEventListener('click', function() {
+        const contactoId = this.closest('.cubo').id.split('_')[1]; // Obtener el ID del contacto
+        document.getElementById(`overlay_info_${contactoId}`).style.display = 'block'; 
+        document.getElementById(`info_contacto_${contactoId}`).style.display = 'block'; 
+    });
 });
 
 // Cerrar información del contacto al hacer clic en el botón "Cerrar"
-document.getElementsByClassName('cerrar_info')[0].addEventListener('click', function() {
-    document.getElementsByClassName('overlay_info')[0].style.display = 'none'; 
-    document.getElementsByClassName('info_contacto_hidden')[0].style.display = 'none'; 
+document.querySelectorAll('.cerrar_info').forEach(button => {
+    button.addEventListener('click', function() {
+        const contactoId = this.closest('.info_contacto_hidden').id.split('_')[1]; // Obtener el ID del contacto
+        document.getElementById(`overlay_info_${contactoId}`).style.display = 'none'; 
+        document.getElementById(`info_contacto_${contactoId}`).style.display = 'none'; 
+    });
 });
 
 // Cerrar información del contacto al hacer clic fuera del contenido (overlay)
-document.getElementsByClassName('overlay_info')[0].addEventListener('click', function() {
-    this.style.display = 'none'; 
-    document.getElementsByClassName('info_contacto_hidden')[0].style.display = 'none'; 
+document.querySelectorAll('.overlay_info').forEach(overlay => {
+    overlay.addEventListener('click', function() {
+        const contactoId = this.id.split('_')[1]; // Obtener el ID del contacto
+        this.style.display = 'none'; 
+        document.getElementById(`info_contacto_${contactoId}`).style.display = 'none'; 
+    });
 });
 
-//______________________________________________________________________________________________
-
-// APARACER FORM EDITAR CONTATO
-
-document.getElementById('editar_contacto').addEventListener('click', function() {
-    document.getElementById('overlay_editar').style.display = 'block'; 
-    document.getElementById('editar_contacto_hidden').style.display = 'block'; 
+// APARECER FORM EDITAR CONTACTO
+document.querySelectorAll('.editar_contacto').forEach(button => {
+    button.addEventListener('click', function() {
+        const contactoId = this.closest('.cubo').id.split('_')[1]; // Obtener el ID del contacto
+        document.getElementById(`overlay_editar_${contactoId}`).style.display = 'block'; 
+        document.getElementById(`editar_contacto_hidden_${contactoId}`).style.display = 'block'; 
+    });
 });
 
-document.getElementById('cerrar_editar').addEventListener('click', function() {
-    document.getElementById('overlay_editar').style.display = 'none'; 
-    document.getElementById('editar_contacto_hidden').style.display = 'none'; 
+// Cerrar edición del contacto
+document.querySelectorAll('.cerrar_editar').forEach(button => {
+    button.addEventListener('click', function() {
+        const contactoId = this.getAttribute('data-id'); // Obtener el ID del contacto
+        document.getElementById(`overlay_editar_${contactoId}`).style.display = 'none'; 
+        document.getElementById(`editar_contacto_hidden_${contactoId}`).style.display = 'none'; 
+    });
 });
 
-document.getElementById('overlay_editar').addEventListener('click', function() {
-    this.style.display = 'none'; 
-    document.getElementById('editar_contacto_hidden').style.display = 'none'; 
-    
+// Cerrar edición del contacto al hacer clic fuera del contenido (overlay)
+document.querySelectorAll('.overlay_editar').forEach(overlay => {
+    overlay.addEventListener('click', function() {
+        const contactoId = this.id.split('_')[1]; // Obtener el ID del contacto
+        this.style.display = 'none'; 
+        document.getElementById(`editar_contacto_hidden_${contactoId}`).style.display = 'none'; 
+    });
 });
 //______________________________________________________________________________________
 
