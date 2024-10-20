@@ -2,7 +2,7 @@
 Maneja el control sobre la información de la vista
 y los modelos de bases de datos
 """
-from models import Usuario, db
+from models import Usuario,Test, db
 
 class ControladorUsuarios:
     @staticmethod

@@ -21,6 +21,7 @@ class Usuario(db.Model, UserMixin):
     recordatorios  = db.relationship('Recordatorios', back_populates='usuario', cascade="all, delete-orphan", lazy=True)
     localidades    = db.relationship('Ubicacion', back_populates='usuario', cascade="all, delete-orphan", lazy=True)
     contactos      = db.relationship('Contactos', back_populates='usuario', cascade="all, delete-orphan", lazy=True)
+    test           = db.relationship('Test', back_populates='usuario', cascade='all, delete-orphan')
 
     def establecer_clave(self, clave):
         self.clave = generate_password_hash(clave)
@@ -70,9 +71,21 @@ class Contactos(db.Model):
     usuario_id    = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
 
     usuario = db.relationship('Usuario', back_populates='contactos')
-class Receta(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(100), nullable=False)
-    tipo_comida = db.Column(db.String(50), nullable=False)  # desayuno, almuerzo, cena
-    ingredientes = db.Column(db.Text, nullable=False)
-    instrucciones = db.Column(db.Text, nullable=False)
+
+class Test(db.Model):
+    __tablename__ = "test"
+    id              = db.Column(db.Integer, primary_key=True)
+    p1              = db.Column(db.String(50), nullable=False)
+    p2              = db.Column(db.String(50), nullable=False)
+    p3              = db.Column(db.String(50), nullable=False)
+    p4              = db.Column(db.String(50), nullable=False)
+    p5              = db.Column(db.String(15), nullable=False)
+    p6              = db.Column(db.String(100), nullable=False)
+    
+    puntaje         = db.Column(db.Integer, nullable=False)   # Campo para el puntaje
+    grado_alzheimer = db.Column(db.String(50), nullable=False)  # Campo para el grado de Alzheimer
+
+    usuario_id      = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
+    usuario = db.relationship('Usuario', back_populates='test')
+
+

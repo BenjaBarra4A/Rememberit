@@ -42,15 +42,6 @@ document.querySelectorAll('.cerrar_info').forEach(button => {
     });
 });
 
-// Cerrar información del contacto al hacer clic fuera del contenido (overlay)
-document.querySelectorAll('.overlay_info').forEach(overlay => {
-    overlay.addEventListener('click', function() {
-        const contactoId = this.id.split('_')[1]; // Obtener el ID del contacto
-        this.style.display = 'none'; 
-        document.getElementById(`info_contacto_${contactoId}`).style.display = 'none'; 
-    });
-});
-
 // APARECER FORM EDITAR CONTACTO
 document.querySelectorAll('.editar_contacto').forEach(button => {
     button.addEventListener('click', function() {
@@ -65,15 +56,6 @@ document.querySelectorAll('.cerrar_editar').forEach(button => {
     button.addEventListener('click', function() {
         const contactoId = this.getAttribute('data-id'); // Obtener el ID del contacto
         document.getElementById(`overlay_editar_${contactoId}`).style.display = 'none'; 
-        document.getElementById(`editar_contacto_hidden_${contactoId}`).style.display = 'none'; 
-    });
-});
-
-// Cerrar edición del contacto al hacer clic fuera del contenido (overlay)
-document.querySelectorAll('.overlay_editar').forEach(overlay => {
-    overlay.addEventListener('click', function() {
-        const contactoId = this.id.split('_')[1]; // Obtener el ID del contacto
-        this.style.display = 'none'; 
         document.getElementById(`editar_contacto_hidden_${contactoId}`).style.display = 'none'; 
     });
 });

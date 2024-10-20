@@ -2,7 +2,7 @@
     Archivo donde se definen los formularios del sistema
 """
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, EmailField, TextAreaField, IntegerField, DateTimeField , SelectField
+from wtforms import StringField, SubmitField, PasswordField, EmailField, RadioField, DateTimeField , SelectField
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms.validators import DataRequired, Email, Length, EqualTo
 from wtforms.fields import TimeField
@@ -92,7 +92,7 @@ class FormularioContactos(FlaskForm):
     nombre     = StringField('Nombre', validators=[DataRequired()])
     apellido   = StringField('Apellido', validators=[DataRequired()])
     numero     = StringField('Número de telefono (+56)', validators=[DataRequired()])
-    correo     = StringField('Correo', validators=[DataRequired(), Email()])
+    correo     = EmailField('Correo', validators=[DataRequired(), Email()])
     submit     = SubmitField('Añadir Contacto')
 
 class FormularioEditarContactos(FlaskForm):
@@ -113,4 +113,11 @@ class FormularioEditarContactos(FlaskForm):
     submit  = SubmitField('Editar Contacto')
 
 class FormularioTest(FlaskForm):
-    nombre     = StringField('Nombre', validators=[DataRequired()])
+    p1       = RadioField(choices=[('1', 'Sí'), ('0', 'No')], default='0', coerce=int)
+    p2       = RadioField(choices=[('1', 'Sí'), ('0', 'No')], default='0', coerce=int)
+    p3       = RadioField(choices=[('1', 'Sí'), ('0', 'No')], default='0', coerce=int)
+    p4       = RadioField(choices=[('1', 'Sí'), ('0', 'No')], default='0', coerce=int)
+    p5       = RadioField(choices=[('1', 'Sí'), ('0', 'No')], default='0', coerce=int)
+    p6       = RadioField(choices=[('1', 'Sí'), ('0', 'No')], default='0', coerce=int)
+
+    submit_t       = SubmitField('Terminar Test')

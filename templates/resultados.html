@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados Test</title>
+</head>
+<body>
+    <h1>Resultados del Test de Alzheimer</h1>
+    
+    <p><strong>Pregunta 1:</strong> {{ test.p1 }} </p>
+    <p><strong>Pregunta 2:</strong>  {{ test.p2 }} </p>
+    <p><strong>Pregunta 3:</strong>  {{ test.p3 }} </p>
+    <p><strong>Pregunta 4:</strong>  {{ test.p4 }}</p>
+    <p><strong>Pregunta 5:</strong>  {{ test.p5 }}</p>
+    <p><strong>Pregunta 6:</strong>  {{ test.p6 }}</p>
+    <p><strong>Puntaje Obtenido:</strong> {{ test.puntaje }}</p>
+    <p><strong>Grado de Alzheimer:</strong> {{ test.grado_alzheimer }}</p>
+
+    <a href="{{ url_for('hacer_test') }}">Realizar otro test</a>
+</body>
+</html>

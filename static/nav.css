@@ -33,7 +33,7 @@
 .navbar-hiden{
     display: none;
     background-color: aquamarine;
-    position: absolute; 
+    position: static; 
     top: 0; 
     left: 0; 
     width: 15vh;

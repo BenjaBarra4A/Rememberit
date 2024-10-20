@@ -18,8 +18,8 @@ login_manager = LoginManager(app)
 login_manager.login_view = "auth"
 
 # Importación de módulos propios
-from forms import FormularioRegistro, FormularioAcceso, FormularioActualizarUsuario, FormularioRecordatorio, FormularioContactos, FormularioEditarContactos
-from models import Usuario, Recordatorios, Ubicacion, Contactos
+from forms import FormularioRegistro, FormularioAcceso, FormularioActualizarUsuario, FormularioRecordatorio, FormularioContactos, FormularioEditarContactos, FormularioTest
+from models import Usuario, Recordatorios, Ubicacion, Contactos, Test
 from controllers import ControladorUsuarios
 
 # Inicialización de versiones de la bases de datos
@@ -35,7 +35,6 @@ def add_header(response):
     response.headers['Pragma'] = 'no-cache'
     response.headers['Expires'] = '0'
     return response
-
 # Rutas de autenticación
 @app.route("/")
 def auth(form_registro=None, form_acceso=None):
@@ -100,6 +99,8 @@ def logout():
 def home():
     usuario = Usuario.obtener_por_correo(current_user.correo)
     recordatorios = Recordatorios.query.filter_by(usuario_id=current_user.id).order_by(Recordatorios.fecha.asc(), Recordatorios.hora.asc()).all()
+    ultimo_test = Test.query.filter_by(usuario_id=current_user.id).order_by(Test.id.desc()).first()
+
     if usuario is None:
         flash('Usuario no encontrado', 'error')
         return redirect(url_for('login'))
@@ -107,7 +108,7 @@ def home():
     contactos = usuario.contactos  # Obtener los contactos del usuario
     form = FormularioContactos()  
     
-    return render_template("perfil.html", usuario=usuario, contactos=contactos, form=form, recordatorios=recordatorios)
+    return render_template("perfil.html", test_id=ultimo_test.id if ultimo_test else None ,usuario=usuario, contactos=contactos, form=form, recordatorios=recordatorios)
 
 @app.route("/update/<int:user_id>", methods=["GET", "POST"])
 @login_required
@@ -200,9 +201,9 @@ def agregar_contacto():
             )
             db.session.add(nuevo_contacto)
             db.session.commit()  # Guardar cambios
-            flash('Contacto añadido exitosamente.', 'success')
+            print('Contacto añadido exitosamente.', 'success')
         else:
-            flash('El usuario con ese correo no existe.', 'error')
+            print('El usuario con ese correo no existe.', 'error')
 
         return redirect(request.referrer)  # Redirige al lugar anterior
 
@@ -283,10 +284,6 @@ def eliminar_recordatorio(recordatorio_id):
     
     flash(f"Recordatorio {Recordatorio.titulo} eliminado con éxito")
     return redirect("/home")
-@app.route("/test", methods=["GET","POST"])
-@login_required
-def hacer_test():
-    return render_template("test_memoria.html")
 
 @app.route("/editar_contacto/<int:contactos_id>", methods=["GET", "POST"])
 @login_required
@@ -309,3 +306,54 @@ def editar_contacto(contactos_id):
         return redirect(url_for("home"))
 
     return render_template("perfil.html", form=form, contacto=contactos, usuario=usuario)
+
+@app.route("/test", methods=["GET", "POST"])
+@login_required
+def hacer_test():
+    form = FormularioTest()
+
+    puntaje = 0
+
+    if form.validate_on_submit():
+        puntaje += 5 * int(form.p1.data)
+        puntaje += 5 * int(form.p2.data)
+        puntaje += 5 * int(form.p3.data)
+        puntaje += 5 * int(form.p4.data)
+        puntaje += 5 * int(form.p5.data)
+        puntaje += 5 * int(form.p6.data)
+        if puntaje == 0:
+            grado = "Aún no se realiza un Test"
+        elif puntaje <= 10:
+            grado = "Leve"
+        elif 11 <= puntaje <= 25:
+            grado = "Medio"
+        else:
+            grado = "Grave"
+        
+        nuevo_test = Test(
+            p1              =form.p1.data,
+            p2              =form.p2.data,
+            p3              =form.p3.data,
+            p4              =form.p4.data,
+            p5              =form.p5.data,
+            p6              =form.p6.data,
+            puntaje         =puntaje,
+            grado_alzheimer =grado,
+            usuario_id      =current_user.id
+        )
+        
+        db.session.add(nuevo_test)
+        db.session.commit()
+
+        print("Test guardado exitosamente.")
+        
+        return redirect(url_for('ver_resultados', test_id=nuevo_test.id))
+
+    return render_template("test_memoria.html", form=form)
+
+@app.route("/resultados/<int:test_id>")
+@login_required
+def ver_resultados(test_id):
+    test = Test.query.get_or_404(test_id)
+
+    return render_template("resultados.html", test=test)
