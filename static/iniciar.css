@@ -19,7 +19,7 @@ h1 {
 }
 
 .line {
-    width: 60%;
+    width: 30%;
     background-color: rgb(0, 0, 0);
     margin: auto;
     height: 3px;
@@ -37,6 +37,7 @@ h1 {
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.5); 
     border-radius: 5px; 
+    width: 23%;
 }
 
 .box {
@@ -50,6 +51,7 @@ h1 {
     border: 1px solid rgb(0, 0, 0);
     color: rgb(0, 0, 0);
     border-radius: 7px;
+    
 }
 
 .acceder:hover {
@@ -73,7 +75,8 @@ h1 {
     padding: 2px;
     cursor: pointer;
     transition: .3s;
-    width: 15%;
+    width: 36.4%;
+    height: 30px;
     justify-content: center;    
 }
 
@@ -86,11 +89,7 @@ h1 {
     );
 }
 
-#button {
-    width: 10%;
-    display: flex;
-    justify-content: center;
-}
+
 
 .botones {
     display: flex;
@@ -98,6 +97,7 @@ h1 {
     justify-content: space-around;
     margin: auto;
     width: 100%;
+    align-items: center;
 }
 
 footer {
@@ -114,7 +114,7 @@ footer {
 /* Código Responsivo */
 @media (max-width: 768px) {
     .formulario {
-        width: 90%; 
+        width: 65%; 
         height: auto;
         padding: 15px; 
     }
@@ -125,15 +125,28 @@ footer {
     }
 
     .formulario a {
-        width: 80%; 
-        margin: 0 auto; 
+        width: 35%; 
     }
-
+    #button {
+        width: 25%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .botones {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: auto;
+        width: 100%;
+    }
     .line {
         width: 80%; 
     }
 
     footer {
-        flex-direction: column; 
+        display: flex;
+        justify-content: center;
+        align-items: end;
     }
 }

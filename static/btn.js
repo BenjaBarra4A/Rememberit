@@ -27,7 +27,7 @@ document.getElementById('openFormButton').addEventListener('click', function() {
 // Función para mostrar la información del contacto
 document.querySelectorAll('.ver_contacto').forEach(button => {
     button.addEventListener('click', function() {
-        const contactoId = this.closest('.cubo').id.split('_')[1]; // Obtener el ID del contacto
+        const contactoId = this.closest('.cubo2').id.split('_')[1]; // Obtener el ID del contacto
         document.getElementById(`overlay_info_${contactoId}`).style.display = 'block'; 
         document.getElementById(`info_contacto_${contactoId}`).style.display = 'block'; 
     });
@@ -45,7 +45,7 @@ document.querySelectorAll('.cerrar_info').forEach(button => {
 // APARECER FORM EDITAR CONTACTO
 document.querySelectorAll('.editar_contacto').forEach(button => {
     button.addEventListener('click', function() {
-        const contactoId = this.closest('.cubo').id.split('_')[1]; // Obtener el ID del contacto
+        const contactoId = this.closest('.cubo2').id.split('_')[1]; // Obtener el ID del contacto
         document.getElementById(`overlay_editar_${contactoId}`).style.display = 'block'; 
         document.getElementById(`editar_contacto_hidden_${contactoId}`).style.display = 'block'; 
     });
@@ -72,6 +72,15 @@ document.addEventListener("DOMContentLoaded", function() {
   
     const fechaInput = document.getElementById("fecha");
     fechaInput.setAttribute("min", formattedDate); 
+});
+
+document.addEventListener('DOMContentLoaded', function() { 
+    const cambiarBtn = document.querySelector('.cambiar_btn');
+    const contenedor = document.querySelector('.contenedor');
+
+    cambiarBtn.addEventListener('click', function() {
+        contenedor.classList.toggle('mover');
+    });
 });
 
 

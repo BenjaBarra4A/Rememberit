@@ -1,20 +1,28 @@
-<link rel="stylesheet" href="{{ url_for('static', filename='update.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='nav.css') }}">
-<script src="{{ url_for('static', filename='btn.js') }}" defer ></script>
-<script src="{{ url_for('static', filename='zonas.js') }}" defer ></script>
-
-{% extends "base_template.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='update.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='nav.css') }}">
+    <script src="{{ url_for('static', filename='zonas.js') }}" defer ></script>
+    <script src="{{ url_for('static', filename='btn.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='color.js') }}" defer></script>
+    <title>Actualizar Información de Usuario</title>
+</head>
+<body>
+    {% extends "base_template.html" %}
 
 {% block titulo %}
     Actualizar Información de Usuario
 {% endblock %}
 
 {% block contenido %}
-    <div id="hello" class="container">
+    <div class="contenedor">
         <footer class="navbar-l">
             <img src="{{ url_for('static', filename='img/logo.png') }}" class="logo-r">
                 <a href="/" class="home">Inicio</a>
-                <a href="/logout" class="close">Cerrar sesión</a>
+                <a href="/logout" class="close btn btn-danger p-1">Cerrar sesión</a>
         </footer>
         <h2>Actualizar Información de Usuario</h2>
         <form method="POST" enctype="multipart/form-data">  
@@ -71,5 +79,17 @@
                 {{ form.submit(class="btn btn-primary") }}
             </div>
         </form>
+        <div class="modo_oscuro">
+            <h4>Modo oscuro</h4>
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider"></span>
+            </label>  
+        </div>
     </div>
 {% endblock %}
+
+</body>
+</html>
+
+

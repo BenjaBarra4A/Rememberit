@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='test.css') }}">
+    <script src="{{ url_for('static', filename='color.js') }}" defer></script>
     <title>Test de Alzheimer</title>
 </head>
 <body>
     <a href="/"><i class='bx bx-arrow-back'></i></a>
-    
-    <h1>Este es un test para tener un nivel aproximado de Alzheimer. </h1>
-    <h3>(Este test no tiene resultados medicos reales, si necesita resultados exactos acuda a su medico de confianza)</h3>
-    <p><strong>Por cada pregunta respondida en "SI" se añadiran 5 puntos</strong></p>
+    <ul class="arriba">
+        <li class="texto">                
+            <h1>Este es un test para tener un nivel aproximado de Alzheimer. </h1>
+            <h3>(Este test no tiene resultados medicos reales, si necesita resultados exactos acuda a su medico de confianza)</h3>
+        </li>
+        <img src="{{ url_for('static', filename='img/logo.png') }}" class="logo-r">
+    </ul>
     <div class="TestMemoria">
         <form action="{{ url_for('hacer_test') }}" class="test" method="POST">
+            <p><strong>Por cada pregunta respondida en "SI" se añadiran 5 puntos</strong></p>
             {{ form.hidden_tag() }}
             <div class="mb-3">
                 <p>¿Has olvidado cosas que solías recordar fácilmente, como nombres o fechas importantes? </p>
@@ -39,8 +45,15 @@
                 <p>¿Te resulta difícil tomar decisiones o juzgar situaciones que antes no te causaban problemas?</p>
                 {{ form.p6 }}
             </div>
-            {{ form.submit_t(class="btn btn-primary") }}
+            {{ form.submit_t(class="boton") }}
         </form>
+    </div>
+    <div class="modo_oscuro">
+        <h4>Modo oscuro</h4>
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+        </label>  
     </div>
 </body>
 </html>

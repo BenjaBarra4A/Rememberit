@@ -2,10 +2,15 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='nav.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="{{ url_for('static', filename='btn.js') }}" defer></script>
+<script src="{{ url_for('static', filename='color.js') }}" defer></script>
 {% extends "base_template.html" %}
 
 
 {% block contenido %}
+<footer class="navbar-hiden">
+    <a href="/" class="home">Inicio</a>
+    <a href="/logout" class="close">Cerrar sesión</a>
+</footer>
     <div class="contenedor">
             <div class="cambiar_btn">
                 <i class="fa-solid fa-bars"></i>
@@ -13,17 +18,14 @@
             <footer class="navbar-l">
                 <img src="{{ url_for('static', filename='img/logo.png') }}" class="logo-r">
                     <a href="/" class="home">Inicio</a>
-                    <a href="/logout" class="close">Cerrar sesión</a>
+                    <a href="/logout" class="close btn btn-danger p-1">Cerrar sesión</a>
             </footer>
             
-            <footer class="navbar-hiden">
-                <a href="/" class="home">Inicio</a>
-                <a href="/logout" class="close">Cerrar sesión</a>
-            </footer>
+            
         
         <!-- Sistema de Recordatorios -->
         <div class="recordatorios">
-            <h2>Recordatorios</h2>
+            <h2 class="primer_t">Recordatorios</h2>
         
             <!-- Formulario para añadir nuevos recordatorios -->
             <form action="/agregar_recordatorio" method="POST" style="margin-top: 20px;">
@@ -45,7 +47,7 @@
             <!-- Lista de recordatorios del usuario -->
             <ul class="reminder-list">
                 {% for recordatorio in recordatorios %}
-                <div class="cubo">
+                <div class="cubo1" >
                     <li class="record">
                         <strong>{{ recordatorio.titulo }}</strong>  
                         {{ recordatorio.fecha.strftime('%d-%m-%Y') }} | {{ recordatorio.hora }}
@@ -64,15 +66,24 @@
                 <h2>Contactos:</h2>
                 {% if contactos %}
                     {% for contacto in contactos %}
-                    <div class="cubo" id="contacto_{{ contacto.id }}">
+                    <div class="cubo2" id="contacto_{{ contacto.id }}">
                         <div class="nombre">
-                            {{ contacto.nombre }} {{ contacto.apellido }}
+                            <ul>
+                                Nombre:
+                                {{ contacto.nombre }} {{ contacto.apellido }}
+                            </ul>
+                            <ul>
+                                Correo:
+                                {{ contacto.correo }}
+                            </ul>
                         </div>
-                        <button class="ver_contacto btn btn-sm btn-primary">Ver Contacto</button>
-                        <button class="editar_contacto btn btn-sm btn-success">Editar Contacto</button>
-                        <form action="{{ url_for('eliminar_contacto', contacto_id=contacto.id) }}" method="POST">
-                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                        </form>
+                        <div class="botones_c">
+                            <button class="ver_contacto btn btn-sm btn-primary" id="button_ver">Ver Contacto</button>
+                            <button class="editar_contacto btn btn-sm btn-success" id="button_editar">Editar Contacto</button>
+                            <form action="{{ url_for('eliminar_contacto', contacto_id=contacto.id) }}" method="POST">
+                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                            </form>
+                        </div>
                     </div>
 
                     <div id="overlay_editar_{{ contacto.id }}" class="overlay_editar"></div>
@@ -175,10 +186,20 @@
                     <p class="bio">{{ usuario.bio }}</p>
                     <a href="/update/{{ usuario.id }}" class="btn btn-primary" >Editar Perfil</a><br>
                     <a href="/eliminar/{{ usuario.id }}" class="btn btn-danger" id="delete" >Eliminar Perfil</a>
-                    
+                    <br>
                     <h4>Desea hacer un test de memoria? <a href="/test">Hacer el test</a></h4><br>
                 </div>
             </div>
+            <div class="modo_oscuro">
+                <h4>Modo oscuro</h4>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>  
+            </div>
             
         </div>
+    </div>
+</div>
+
 {% endblock %}

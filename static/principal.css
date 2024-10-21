@@ -2,43 +2,45 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: cursive; 
 }
 
 body {
-    background-color: rgb(175, 152, 152);
-    font-family: cursive; /* Fuente por defecto */
+    transition: background-color 0.3s, color 0.3s; /* Suave transición de colores */
 }
-
+.navbar-l{
+    border-right: 1px solid black;
+}
 .img {
-    display: block; /* Cambiado a block para evitar problemas de alineación */
+    display: block; 
     width: 25vh;
-    border-radius: 50%; /* Asegura un círculo perfecto */
-    margin: 0 auto; /* Centra la imagen */
+    border-radius: 50%; 
+    margin: 0 auto; 
 }
 
 .perfil {
-    position: relative; /* Cambiado a relativo para evitar problemas de superposición */
+    position: relative; 
     display: flex;  
-    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+    flex-direction: column; 
     border-radius: 30px;
     height: 70%;
     width: 75%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-    background-color: white; /* Añadir color de fondo */
-    margin: 20px; /* Añadir margen para evitar superposición */
-    padding: 20px; /* Añadir relleno interno */
+    background-color: white; 
+    margin: 20px;
+    padding: 20px; 
 }
 
 .bio {
     overflow: hidden;
-    height: auto; /* Ajuste automático */
+    height: auto; 
 }
 
 .info {
-    display: flex; /* Cambiado a flex para mejor alineación */
-    flex-direction: column; /* Alineación vertical */
-    align-items: center; /* Centrado horizontal */
-    justify-content: center; /* Centrado vertical */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
 }
 
 .recordatorios {
@@ -71,9 +73,9 @@ body {
 .contenedor {
     display: flex;
     flex-direction: row;
-    justify-content: space-between; /* Espaciado entre elementos */
+    justify-content: space-between; 
     margin-top: 6vh;
-    padding: 0 20px; /* Espacio lateral */
+    padding: 0 20px; 
 }
 
 .subcontenedor {
@@ -94,7 +96,7 @@ h6 {
     color: inherit;
 }
 
-.cubo {
+.cubo1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -103,17 +105,35 @@ h6 {
     margin-bottom: 10px;
     border-radius: 5px;
     background-color: #f9f9f9;
-    width: 100%; /* Asegura que el cubo ocupe todo el ancho */
+    width: 100%; 
 }
 
-.cubo strong {
+.cubo1 strong {
     margin-right: 10px;
 }
 
-.cubo a {
+.cubo1 a {
     margin-left: 10px;
 }
+.cubo2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 100%; 
+}
 
+.cubo2 strong {
+    margin-right: 10px;
+}
+
+.cubo2 a {
+    margin-left: 10px;
+}
 .record {
     display: flex;
     justify-content: start;
@@ -122,6 +142,18 @@ h6 {
 .botones {
     display: flex;
     justify-content: end;
+}
+.nombre{
+    display: flex;
+    flex-direction: column;
+    
+}
+.botones_c{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: 1px solid rgb(189, 189, 189);
+    padding: 10px 20px; 
 }
 
 .reminder-list {
@@ -203,11 +235,14 @@ h6 {
 .nombre{
     margin: 10px;
 }
-.cubo button{
+.cubo1 button{
+    margin: 2px;
+}
+.cubo2 button{
     margin: 2px;
 }
 .overlay_info.open {
-    display: block; /* Mostrar el overlay cuando tenga la clase open */
+    display: block; 
 }
 
 .info_contacto_hidden {
@@ -225,7 +260,7 @@ h6 {
 }
 
 .info_contacto_hidden.open {
-    display: block; /* Mostrar la información de contacto cuando tenga la clase open */
+    display: block; 
 }
 .editar_contacto_hidden{
     display: none; 
@@ -266,7 +301,14 @@ h6 {
     position: fixed;
     display: block;
 }
-
+#button{
+    background-color: #28a745;
+    height: 4vh;
+    width: 15vh;
+    border-radius: 5px;
+    border: 0;
+    color: white;
+}
 /* Código Responsivo */
 @media (max-width: 768px) {
     .contenedor {
@@ -281,23 +323,156 @@ h6 {
     .recordatorios {
         width: 100%; 
     }
-
+    .cubo1{
+        position: relative; 
+        overflow: hidden;
+    }
+    .cubo2{
+        position: relative; 
+        overflow: hidden;
+    }
     .record {
-        font-size: 10px;
+        font-size: 15px;
     }
+    .botones{
+        width: 40%;
+        display: flex;
+        justify-content: center;
+    }
+    .botones_c{
+        display: flex;
+        flex-direction: column;
+    }
+    #button_ver{
+        height: 30px;
+    }
+    #button_editar{
+        height: 30px;
+    }
+}
 
-    #edit {
-        left: 10px;
-        display: block;
-        overflow: hidden;
-        width: 5vh;
-        height: 5vh;
-    }
 
-    #eliminar {
-        display: block; /* Cambiado a block para asegurar que funcione correctamente */
-        overflow: hidden;
-        width: 5vh;
-        height: 5vh;
-    }
+/*
+.contenedor {
+    transition: transform 0.3s ease; 
+}
+
+.mover{
+    transform: translateX(13vh); 
+    transition: transform 0.3s ease;
+}
+*/
+.mover{
+    margin-left: 13vh;
+    transition: transform 0.3s ease;
+}
+
+
+body.light {
+    background-color: white; 
+    color: black; 
+}
+
+body.dark-mode {
+    background-color: black; 
+    color: white; 
+}
+
+.navbar-l, .recordatorios, .cubo, .form-flotante {
+    background-color: white; /* Fondo claro para otros elementos */
+}
+
+body.dark-mode , 
+body.dark-mode .recordatorios, 
+body.dark-mode .cubo1,
+body.dark-mode .form-flotante {
+    background-color: black; /* Fondo oscuro para otros elementos */
+}
+body.dark-mode .contactos{
+    background-color: rgb(227, 227, 227);
+    border: 1px solid rgb(0, 0, 94);
+    color: black;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+body.dark-mode .navbar-hiden, 
+body.dark-mode .navbar-l{
+    background-color: rgb(0, 8, 101);
+    border-right: 1px solid gray;
+}
+body.dark-mode .cubo2{
+    border: 1px solid black;
+    color: black;
+    background-color: transparent;
+    box-shadow: 1px 1px 2px;
+}
+body.dark-mode .perfil{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    color: black;
+    background-color: rgb(227, 227, 227);
+}
+body.dark-mode 
+.btn-success {
+    background-color: #28a745; 
+}
+body.dark-mode .primer_t{
+    border-bottom: 2px solid white;
+    padding-bottom: 1px; 
+    color: white; 
+    width: 40%;
+}
+body.dark-mode .btn-success {
+    background-color: #4caf50; 
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc; 
+    transition: .4s; 
+    border-radius: 34px; 
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px; 
+    bottom: 4px; 
+    background-color: white;
+    transition: .4s; 
+    border-radius: 50%; 
+}
+
+
+input:checked + .slider {
+    background-color: #2196F3; 
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px); 
+}
+.modo_oscuro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    padding: 10px;
+    border-radius: 10px;
 }

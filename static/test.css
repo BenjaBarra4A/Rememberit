@@ -1,0 +1,120 @@
+*{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+h1{
+    font-size: 5vh;
+}
+h3{
+    font-size: 2.5vh;
+}
+.arriba{
+    color: greenyellow;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+}
+.texto{
+    display: flex;
+    flex-direction: column;
+}
+img{
+    height: 26vh;
+    width: 26vh;
+}
+.TestMemoria{
+    border: 2px solid greenyellow;
+    padding: 20px;
+    margin: 17px;
+}
+.boton{
+    background-color: transparent;
+    height: 4vh;
+    border-radius: 5px;
+    border: 3px solid rgb(7, 255, 77);
+    color: black;
+}
+.boton:hover{
+    border: 3.2px solid rgb(115, 233, 148);
+}
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body.dark-mode {
+    background-color: black; 
+    color: white; 
+}
+body.dark-mode .arriba{
+    color: blue;
+}
+body.dark-mode .boton{
+    color:white;
+}
+body.dark-mode .boton:hover{
+    border: 3.2px solid rgb(47, 0, 255);
+}
+body.dark-mode .TestMemoria {
+    border: 2px solid rgb(0, 13, 100);
+}
+
+body.dark-mode .boton {
+    border: 3px solid rgb(0, 13, 100);
+}
+/*                           BOTON THEME                */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc; 
+    transition: .4s; 
+    border-radius: 34px; 
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px; 
+    bottom: 4px; 
+    background-color: white;
+    transition: .4s; 
+    border-radius: 50%; 
+}
+
+
+input:checked + .slider {
+    background-color: #2196F3; 
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px); 
+}
+.modo_oscuro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    padding: 10px;
+    border-radius: 10px;
+    width: 20%;
+    
+}

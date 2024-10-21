@@ -1,4 +1,6 @@
-
+* {
+    font-family: cursive;  
+}
 #container{
     margin-left: 38vh;
     margin-top: 2vh;

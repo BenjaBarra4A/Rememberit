@@ -1,3 +1,6 @@
+* {
+    font-family: cursive;  
+}
 .navbar-l {
     background-color: aquamarine;
     position: fixed; 
@@ -40,6 +43,7 @@
     height: 100vh;
     overflow: hidden;
     transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
 }
 .navbar-hiden.open {
     display: block; 
@@ -61,6 +65,22 @@
 .contenedor .cambiar_btn{
     color: black;
     font-size: 1.5rem;
+}
+body.dark-mode .contenedor .cambiar_btn {
+    color: #fff; 
+}
+
+body.dark-mode .navbar-hiden a, 
+body.dark-mode .navbar-l a{
+    background-color: rgb(153, 153, 153);
+    color: black;
+    border: 1px solid gray;
+}
+body.dark-mode .navbar-hiden a:hover,
+body.dark-mode .navbar-l a:hover{
+    background-color: rgb(97, 97, 97);
+    color: white;
+
 }
 @media (max-width: 769px) {
     
