@@ -21,6 +21,13 @@
     <div class="contenedor">
         <footer class="navbar-l">
             <img src="{{ url_for('static', filename='img/logo.png') }}" class="logo-r">
+            <div class="modo_oscuro">
+                <h4>Modo oscuro</h4>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>  
+            </div>
                 <a href="/" class="home">Inicio</a>
                 <a href="/logout" class="close btn btn-danger p-1">Cerrar sesión</a>
         </footer>
@@ -79,13 +86,6 @@
                 {{ form.submit(class="btn btn-primary") }}
             </div>
         </form>
-        <div class="modo_oscuro">
-            <h4>Modo oscuro</h4>
-            <label class="switch">
-                <input type="checkbox" id="theme-toggle">
-                <span class="slider"></span>
-            </label>  
-        </div>
     </div>
 {% endblock %}
 

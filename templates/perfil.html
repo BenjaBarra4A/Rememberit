@@ -17,17 +17,23 @@
             </div>
             <footer class="navbar-l">
                 <img src="{{ url_for('static', filename='img/logo.png') }}" class="logo-r">
+                    <div class="modo_oscuro">
+                        <h4>Modo oscuro</h4>
+                        <label class="switch">
+                            <input type="checkbox" id="theme-toggle">
+                            <span class="slider"></span>
+                        </label>  
+                    </div>
                     <a href="/" class="home">Inicio</a>
                     <a href="/logout" class="close btn btn-danger p-1">Cerrar sesión</a>
             </footer>
             
             
         
-        <!-- Sistema de Recordatorios -->
         <div class="recordatorios">
             <h2 class="primer_t">Recordatorios</h2>
         
-            <!-- Formulario para añadir nuevos recordatorios -->
+            
             <form action="/agregar_recordatorio" method="POST" style="margin-top: 20px;">
                 <div class="form-group">
                     <label for="titulo">Título del recordatorio</label>
@@ -44,7 +50,6 @@
                 <button type="submit" class="btn btn-success ">Añadir Recordatorio</button> <br> <br>
             </form>
 
-            <!-- Lista de recordatorios del usuario -->
             <ul class="reminder-list">
                 {% for recordatorio in recordatorios %}
                 <div class="cubo1" >
@@ -62,8 +67,9 @@
                 {% endfor %}
             </ul>
             
+            
+            <h2>Contactos:</h2>
             <div class="contactos" id="contactos_c">
-                <h2>Contactos:</h2>
                 {% if contactos %}
                     {% for contacto in contactos %}
                     <div class="cubo2" id="contacto_{{ contacto.id }}">
@@ -111,7 +117,7 @@
                                 {{ form.numero.label }} 
                                 {{ form.numero(class="form-control") }}
                             </div>
-                            {{ form.submit(class="acceder", id="button") }}
+                            {{ form.submit(class="acceder", id="button", value="Editar Contacto") }}
                             <a href="{{ url_for('home') }}" class="btn btn-secondary">Volver</a>
                         </form>
                     </div>
@@ -138,7 +144,7 @@
                     <p>No tienes contactos añadidos.</p>
                 {% endif %}
             </div> <br>
-            <button id="openFormButton" class="btn btn-success">Añadir Contacto</button><br> <br> 
+            <button id="openFormButton" class="btn btn-success">Añadir Contacto</button><br> <br>
         </div>
         
         <div id="overlay" class="overlay"></div>
@@ -189,13 +195,6 @@
                     <br>
                     <h4>Desea hacer un test de memoria? <a href="/test">Hacer el test</a></h4><br>
                 </div>
-            </div>
-            <div class="modo_oscuro">
-                <h4>Modo oscuro</h4>
-                <label class="switch">
-                    <input type="checkbox" id="theme-toggle">
-                    <span class="slider"></span>
-                </label>  
             </div>
             
         </div>

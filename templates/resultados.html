@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='resultados_test.css') }}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="{{ url_for('static', filename='color.js') }}" defer></script>
     <title>Resultados Test</title>
 </head>
 <body>
+        
+    <a href="/" class="back"><i class='bx bx-arrow-back' id="volver_home"></i></a>
     <div class="contenedor">
         <h1>Resultados del Test de Alzheimer</h1>
     
@@ -22,14 +25,7 @@
     </div>
     
 
-    <a href="{{ url_for('hacer_test') }}">Realizar otro test</a>
+    <a href="{{ url_for('hacer_test') }}" class="retry">Realizar otro test</a>
     <br>
-    <div class="modo_oscuro">
-        <h4>Modo oscuro</h4>
-        <label class="switch">
-            <input type="checkbox" id="theme-toggle">
-            <span class="slider"></span>
-        </label>  
-    </div>
 </body>
 </html>

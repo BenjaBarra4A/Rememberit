@@ -9,10 +9,10 @@
     <title>Test de Alzheimer</title>
 </head>
 <body>
-    <a href="/"><i class='bx bx-arrow-back'></i></a>
+    <a href="/"><i class='bx bx-arrow-back' id="volver_home"></i></a>
     <ul class="arriba">
         <li class="texto">                
-            <h1>Este es un test para tener un nivel aproximado de Alzheimer. </h1>
+            <h2>Este es un test para tener un nivel aproximado de Alzheimer. </h2>
             <h3>(Este test no tiene resultados medicos reales, si necesita resultados exactos acuda a su medico de confianza)</h3>
         </li>
         <img src="{{ url_for('static', filename='img/logo.png') }}" class="logo-r">
@@ -48,12 +48,6 @@
             {{ form.submit_t(class="boton") }}
         </form>
     </div>
-    <div class="modo_oscuro">
-        <h4>Modo oscuro</h4>
-        <label class="switch">
-            <input type="checkbox" id="theme-toggle">
-            <span class="slider"></span>
-        </label>  
-    </div>
+    
 </body>
 </html>

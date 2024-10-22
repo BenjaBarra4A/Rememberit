@@ -1,13 +1,13 @@
-* {
-    font-family: cursive;
-}
 body {
     background-image: linear-gradient(
         150deg,
-        blue,
-        orange,
+        rgb(0, 204, 255),
+        white,
         green
         );;
+    background-size: cover; 
+    background-attachment: fixed; 
+    margin: 0;
 }
 .p{
     color: rgb(0, 0, 0);;
@@ -57,19 +57,18 @@ body {
     border-radius: 50px;
     color: black;
 }
-/* Código Responsivo */
 @media (max-width: 768px) {
     .contenedor {
-        padding-left: 10px; /* Reduce el padding en pantallas más pequeñas */
+        padding-left: 10px;
         padding-top: 10px;
     }
 
     #registro {
-        position: relative; /* Cambia a relativo para mejor adaptación en pantallas pequeñas */
-        margin-left: 0; /* Alinea el registro al centro */
-        width: 90%; /* Asegura que el registro ocupe el 90% del ancho */
-        left: 50%; /* Centra el formulario horizontalmente */
-        transform: translateX(-50%); /* Ajusta la posición para centrar */
+        position: relative; 
+        margin-left: 0; 
+        width: 90%; 
+        left: 50%; 
+        transform: translateX(-50%); 
     }
 
     .linea1, .linea2, .linea3 {
